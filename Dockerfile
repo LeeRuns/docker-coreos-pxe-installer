@@ -34,6 +34,6 @@ RUN cd /app/tftp && \
 #     chmod 644 pxe/coreos_production_pxe.vmlinuz
 
 # Customizations
-ENV INTERFACE=eth1
+ENV INTERFACE=eth2
 
 CMD /app/init
