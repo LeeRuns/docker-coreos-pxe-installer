@@ -1,15 +1,18 @@
-FROM ubuntu:14.04
+FROM ubuntu:bionic
 
-MAINTAINER Quanlong He <kyan.ql.he@gmail.com>
+MAINTAINER K Runyon <klr5240@gmail.com>
 
-RUN echo "deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse" > /etc/apt/sources.list && \
-echo "deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse" >> /etc/apt/sources.list && \
-echo "deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
-echo "deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse" >> /etc/apt/sources.list && \
-echo "deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse" >> /etc/apt/sources.list
+#RUN echo "deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse" > /etc/apt/sources.list && \
+#echo "deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse" >> /etc/apt/sources.list && \
+#echo "deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+#echo "deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse" >> /etc/apt/sources.list && \
+#echo "deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse" >> /etc/apt/sources.list
 
 # Install deps
-RUN apt-get update && apt-get install -y dnsmasq syslinux wget
+RUN apt-get update && apt-get install -y \ 
+    dnsmasq \
+    syslinux \
+    wget
 
 COPY app /app
 
@@ -35,5 +38,5 @@ RUN cd /app/tftp && \
 
 # Customizations
 ENV INTERFACE=eth1
-
+RUN pwd
 CMD /app/init
